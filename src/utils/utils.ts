@@ -18,6 +18,8 @@ export class Utils {
     }
 
     public static checkResponseForErrors(response: any, fieldToCheck: string, subFields: string[] = []): void {
+        console.log(JSON.stringify(response, null, 4));
+
         if (!response) {
             throw new Error('No response received!');
         }

@@ -28,6 +28,7 @@ export class Unifi {
         };
 
         const response: any = await request.get(opts);
+        console.log(JSON.stringify(response.headers, null, 4));
         if (response.headers['x-csrf-token']) {
             log('Endpoint Style: UnifiOS');
             return {
@@ -69,6 +70,8 @@ export class Unifi {
             resolveWithFullResponse: true,
             timeout: 1000
         };
+
+        console.log(JSON.stringify(opts));
 
         const response: any = await Utils.backoff(this.maxRetries, request.post(opts), this.initialBackoffDelay);
         Utils.checkResponseForErrors(response, 'headers', ['authorization']);
